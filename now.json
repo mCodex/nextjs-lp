@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "name": "nextjs-lp",
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }]
+}
