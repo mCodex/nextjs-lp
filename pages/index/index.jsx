@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Grid, Image, Header } from 'semantic-ui-react';
+import { Grid, Image, Header, Container } from 'semantic-ui-react';
 import HomeHeader from '../../components/HomeHeader';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -9,6 +9,26 @@ import './index.css';
 
 import img1 from '../../static/img1.png';
 import img2 from '../../static/img2.png';
+
+const testimonials = [
+  {
+    text: ` Donec tristique eros dolor, non pellentesque eros mattis sed. Integer varius mi
+    non risus aliquam congue. Mauris vel dui a odio ultrices efficitur. Nam porta nunc
+    sed erat euismod suscipit. Fusce maximus in risus quis mollis. Etiam enim nulla,
+    gravida ut vehicula in, porttitor vehicula enim. Maecenas dignissim neque ac metus
+    sollicitudin accumsan.`,
+    by: 'John Doe'
+  },
+  {
+    text: `Aenean aliquet velit at nisi laoreet, in tristique justo sagittis. Aliquam accumsan
+    vel elit eu facilisis. Vestibulum ornare vulputate ex, id aliquet orci finibus ac.
+    Duis suscipit pharetra cursus. Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit. Nam id rhoncus dolor. Fusce nec viverra lorem. Aenean maximus ante vel lacus
+    viverra, vitae rutrum nisl feugiat. Pellentesque condimentum velit sed bibendum
+    malesuada. Integer a ante sapien.`,
+    by: 'Foo Bar'
+  }
+];
 
 const Home = () => {
   // const [isLoaded, setLoaded] = useState();
@@ -48,6 +68,22 @@ const Home = () => {
             <Header as="h3" style={{ color: '#fff' }}>
               Lorem Ipsum Sit
             </Header>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            {testimonials.map(({ text, by }, i) => (
+              <div className="testimonialsContainer">
+                <Container text textAlign="justified">
+                  <p>
+                    <i>{text}</i>
+                  </p>
+                </Container>
+                <Container text textAlign="center">
+                  <p>{`By: ${by}`}</p>
+                </Container>
+              </div>
+            ))}
           </Grid.Column>
         </Grid.Row>
       </Grid>
