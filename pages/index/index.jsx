@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Grid, Image, Header, Container } from 'semantic-ui-react';
+import { Grid, Image, Header, Container, Button } from 'semantic-ui-react';
 import HomeHeader from '../../components/HomeHeader';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -9,6 +9,7 @@ import './index.css';
 
 import img1 from '../../static/img1.png';
 import img2 from '../../static/img2.png';
+import handsImg from '../../static/hands.png';
 
 const testimonials = [
   {
@@ -84,6 +85,24 @@ const Home = () => {
                 </Container>
               </div>
             ))}
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row
+          className="ctaDivBeforeFooter"
+          style={{
+            backgroundImage: `linear-gradient(0deg,rgba(0,0,0,0.6), rgba(0,0,0,0.4)),url(${handsImg})`
+          }}
+        >
+          <Grid.Column textAlign="center" verticalAlign="middle">
+            <Header as="h1" style={{ color: '#fff' }}>
+              Start helping today
+            </Header>
+            <Button color="teal">Click Here</Button>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row style={{ backgroundColor: '#eee' }}>
+          <Grid.Column textAlign="center">
+            <p>{`${new Date().getFullYear()} - mCodex`}</p>
           </Grid.Column>
         </Grid.Row>
       </Grid>

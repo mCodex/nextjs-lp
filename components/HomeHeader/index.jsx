@@ -19,7 +19,10 @@ export default function() {
             We just want to make the world better
           </Header>
           <Header as="h2" style={{ color: '#fff' }}>
-            Be with us
+            Be with us &nbsp;
+            <span role="img" aria-label="Peace">
+              ✌️
+            </span>
           </Header>
         </Grid.Column>
       </Grid.Row>
