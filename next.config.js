@@ -1,4 +1,7 @@
 const withCSS = require('@zeit/next-css'); //eslint-disable-line
+const withOptimizedImages = require('next-optimized-images');
+
+module.exports = withOptimizedImages();
 
 module.exports = {
   webpack: config => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Grid, Image, Header, Container, Button } from 'semantic-ui-react';
+import { Grid, Image, Header, Container, Button, Transition, Visibility } from 'semantic-ui-react';
 import HomeHeader from '../../components/HomeHeader';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -7,10 +7,20 @@ import 'semantic-ui-css/semantic.min.css';
 
 import './index.css';
 
-import img1 from '../../static/img1.png';
-import img2 from '../../static/img2.png';
+// import img1 from '../../static/img1.png';
+// import img2 from '../../static/img2.png';
 import handsImg from '../../static/hands.png';
 
+const imgsDivContainer = [
+  {
+    img: require('../../static/img1.png'),
+    webp: require('../../static/img1.png?webp')
+  },
+  {
+    img: require('../../static/img2.png'),
+    webp: require('../../static/img2.png?webp')
+  }
+];
 const testimonials = [
   {
     text: ` Donec tristique eros dolor, non pellentesque eros mattis sed. Integer varius mi
@@ -32,6 +42,7 @@ const testimonials = [
 ];
 
 const Home = () => {
+  const [isAnimationVisible, setAnimationVisible] = useState(false);
   // const [isLoaded, setLoaded] = useState();
   // const [posts, setPosts] = useState([]);
 
@@ -54,12 +65,25 @@ const Home = () => {
       <HomeHeader />
       <Grid>
         <Grid.Row columns={2}>
-          <Grid.Column textAlign="center">
-            <Image src={img1} size="medium" circular floated="right" />
-          </Grid.Column>
-          <Grid.Column>
-            <Image src={img2} size="medium" circular />
-          </Grid.Column>
+          {imgsDivContainer.map(({ img, webp }, i) => (
+            <Grid.Column key={i}>
+              <Visibility onTopVisible={() => setAnimationVisible(true)}>
+                <Transition visible={isAnimationVisible} animation="scale" duration={500}>
+                  <picture>
+                    <source srcSet={webp} type="image/webp" />
+                    <source srcSet={img} type="image/png" />
+                    <Image
+                      src={img}
+                      size="medium"
+                      circular
+                      floated={i === 0 ? 'right' : 'left'}
+                      alt={`Person ${i}`}
+                    />
+                  </picture>
+                </Transition>
+              </Visibility>
+            </Grid.Column>
+          ))}
         </Grid.Row>
         <Grid.Row className="blockBuster">
           <Grid.Column textAlign="center" verticalAlign="middle">
@@ -74,7 +98,7 @@ const Home = () => {
         <Grid.Row>
           <Grid.Column>
             {testimonials.map(({ text, by }, i) => (
-              <div className="testimonialsContainer">
+              <div className="testimonialsContainer" key={i}>
                 <Container text textAlign="justified">
                   <p>
                     <i>{text}</i>
